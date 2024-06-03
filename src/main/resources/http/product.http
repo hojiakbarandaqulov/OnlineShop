@@ -1,0 +1,43 @@
+### product create to example
+POST http://localhost:8080/api/v1/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Table Lamp",
+  "description": "Excellent",
+  "price": 19.00,
+  "originalPrice": 19.00,
+  "imageUrl": "https://www.google.com/search?q=messi+rasmi&oq=Messi+Ra&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBggCEEUYOTIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIJCAkQABgKGIAEqAIIsAIB&sourceid=chrome&ie=UTF-8#vhid=4dPHpNunMK_MfM&vssid=l",
+  "condition": "NEW",
+  "discount": 50,
+  "statistics": 5
+}
+
+### product all to example
+GET http://localhost:8080/api/v2/productAll
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+### PUT update to example
+PUT http://localhost:8080/api/v3/update/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Table Lamp",
+  "description": "Excellent",
+  "price": 19.00,
+  "originalPrice": 19.00,
+  "imageUrl": "https://www.google.com/search?q=messi+rasmi&oq=Messi+Ra&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBwgBEAAYgAQyBggCEEUYOTIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIJCAkQABgKGIAEqAIIsAIB&sourceid=chrome&ie=UTF-8#vhid=4dPHpNunMK_MfM&vssid=l",
+  "condition": "NEW",
+  "discount": 50,
+  "statistics": 5
+}
+
+### Delete product
+DELETE http://localhost:8080/api/v4/delete/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+### Pagination
+GET http://localhost:8080/product/pagination?page=1&size4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg

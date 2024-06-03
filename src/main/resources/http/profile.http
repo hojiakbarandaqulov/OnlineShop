@@ -1,0 +1,62 @@
+####
+POST http://localhost:8080/profile/adm/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Alish",
+  "surname": "Valiyev",
+  "email": "valish@gmail.com",
+  "phone": "+998995092381",
+  "password": "1234",
+  "status": "ACTIVE",
+  "role": "ROLE_ADMIN"
+}
+
+### Profile update detail
+PUT  http://localhost:8080/profile/adm/current/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Valish",
+  "surname": "Valishev"
+}
+
+###
+PUT http://localhost:8080/profile/adm/update/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "email": "ali@gmail.com",
+  "phone": "9989955533322",
+  "password": "1234",
+  "status": "ACTIVE",
+  "role": "ROLE_ADMIN"
+}
+### Get all Profile to example server
+GET  http://localhost:8080/profile/adm/profilePagination?page=1&size=3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+
+### Delete ById Profile to example server
+DELETE http://localhost:8080/profile/adm/delete/6
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+###
+POST http://localhost:8080/api/filter?page=6&size=10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Alish",
+  "surname": "Alishev",
+  "email": "hojiakbarandaqulov5@gmail.com",
+  "role": "ROLE_USER",
+  "createdDateFrom": "2024-05-29",
+  "createdDateTo": "2024-05-31"
+}
+

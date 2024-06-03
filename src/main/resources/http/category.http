@@ -1,0 +1,20 @@
+###
+GET http://localhost:8080/api/v1/Table Lamp
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+
+
+###
+POST http://localhost:8080/api/v2/filter?page=1&size=6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+
+{
+  "name": "Table Lamp",
+  "description": "Excellent",
+  "condition": "NEW",
+  "discount": 50,
+  "statistics": 5,
+  "priceFrom": 19,
+  "priceTo": 299
+}
