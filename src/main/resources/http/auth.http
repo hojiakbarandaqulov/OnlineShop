@@ -1,0 +1,35 @@
+### Registration with Phone
+POST localhost:8080/auth/registration
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc0MjI1OTMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NTA4OTkzLCJpc3MiOiJPbmxpbmVTaG9wIn0.HsMrsFAJUYg1OMgCdgg26dSIWcTaNt5lIQY3Fb3vbKVZJFNM8s8iSceRgCmyFq7viGHfdJ2hxFTLo4lRyBGtDQ
+
+{
+  "name": "Xojiakbar",
+  "surname": "Andaqulov",
+  "email": "codeuz91@gmail.com",
+  "password": "1234",
+  "role": "ROLE_ADMIN",
+  "status": "REGISTRATION"
+}
+
+###
+GET http://localhost:8080/auth/verification/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc0MjI1OTMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NTA4OTkzLCJpc3MiOiJPbmxpbmVTaG9wIn0.HsMrsFAJUYg1OMgCdgg26dSIWcTaNt5lIQY3Fb3vbKVZJFNM8s8iSceRgCmyFq7viGHfdJ2hxFTLo4lRyBGtDQ
+
+
+
+### Login
+POST localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "hojiakbarandaqulov@gmail.com",
+  "password": "1234"
+}
+
+###
+GET localhost:8080/auth/registration/resend/codeuz91@gmail.com
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc0MjI1OTMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NTA4OTkzLCJpc3MiOiJPbmxpbmVTaG9wIn0.HsMrsFAJUYg1OMgCdgg26dSIWcTaNt5lIQY3Fb3vbKVZJFNM8s8iSceRgCmyFq7viGHfdJ2hxFTLo4lRyBGtDQ
+
+
+
