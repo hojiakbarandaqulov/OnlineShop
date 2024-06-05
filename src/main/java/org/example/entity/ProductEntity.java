@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.enums.ProductCondition;
 
+
 @Getter
 @Setter
 @Entity
@@ -34,5 +35,6 @@ public class ProductEntity {
 
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
+
 
 }

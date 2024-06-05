@@ -55,4 +55,50 @@ public class EmailHistoryService {
             throw new AppBadException("Confirmation time expired");
         }
     }
+
+
+    public EmailDTO getByEmail(String email, EmailDTO emailDTO) {
+        Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByEmail(email);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("Email not found");
+        }
+        EmailHistoryEntity entity = new EmailHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setEmail(emailDTO.getEmail());
+        entity.setMessage(emailDTO.getMessage());
+        return emailDTO(entity);
+    }
+
+    private EmailDTO emailDTO(EmailHistoryEntity entity) {
+        EmailDTO emailDTO = new EmailDTO();
+        emailDTO.setCreatedDate(entity.getCreatedDate());
+        emailDTO.setEmail(entity.getEmail());
+        emailDTO.setMessage(entity.getMessage());
+        return emailDTO;
+    }
+
+    public EmailDTO getByCreatedDate(EmailDTO emailDTO, LocalDateTime createdDate) {
+        Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByCreatedDate(createdDate);
+        if (byEmail.isEmpty()) {
+            throw new AppBadException("CreatedDate not found");
+        }
+        EmailHistoryEntity entity = new EmailHistoryEntity();
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setEmail(emailDTO.getEmail());
+        entity.setMessage(emailDTO.getMessage());
+        return emailDTO(entity);
+    }
+
+    public PageImpl<EmailDTO> paginationEmail(int page, int size) {
+        Sort sort = Sort.by(Sort.Order.desc("createdDate"));
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<EmailHistoryEntity> all = emailHistoryRepository.findAll(pageable);
+
+        List<EmailDTO> email = new LinkedList<>();
+        for (EmailHistoryEntity emailEntity : all.getContent()) {
+            email.add(emailDTO(emailEntity));
+        }
+        Long totalCount = all.getTotalElements();
+        return new PageImpl<EmailDTO>(email, pageable, totalCount);
+    }
 }

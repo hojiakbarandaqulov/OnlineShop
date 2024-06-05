@@ -23,6 +23,7 @@ public class EmailHistoryEntity {
 
     @Column(name = "visible")
     private Boolean visible=Boolean.FALSE;
+
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
 }

@@ -7,6 +7,11 @@ import org.example.dto.filter.ProfileFilterDTO;
 import org.example.dto.response.FilterResponseDTO;
 import org.example.entity.ProductEntity;
 import org.example.entity.ProfileEntity;
+import org.example.dto.filter.ProfileFilterDTO;
+import org.example.dto.response.FilterResponseDTO;
+import org.example.entity.ProfileEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

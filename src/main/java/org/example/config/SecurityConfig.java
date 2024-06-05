@@ -56,6 +56,8 @@ public class SecurityConfig {
                     .requestMatchers("/product/adm/**").hasRole("ADMIN")
                     .requestMatchers("/product/filter").permitAll()
                     .requestMatchers("/category/**").permitAll()
+                    .requestMatchers("/category/adm/**").hasRole("ADMIN")
+                    .requestMatchers("/category/language").permitAll()
                     .anyRequest()
                     .authenticated();
         });

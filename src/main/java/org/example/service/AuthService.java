@@ -42,6 +42,7 @@ public class AuthService {
         entity.setCreatedDate(LocalDate.now());
         entity.setRole(ProfileRole.ROLE_USER);
         entity.setStatus(ProfileStatus.REGISTRATION);
+        entity.setStatus(dto.getStatus());
         profileRepository.save(entity);
         // send email
         sendRegistrationEmail(entity.getId(), entity.getEmail());

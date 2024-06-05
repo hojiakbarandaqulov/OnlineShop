@@ -15,10 +15,13 @@ public interface EmailHistoryRepository extends JpaRepository<EmailHistoryEntity
 
     // select count(*) from email_history createdDate between :from and :to
 
+    Optional<EmailHistoryEntity> findByEmail(String email);
+
     Optional<EmailHistoryEntity> findByCreatedDate(LocalDateTime createdDate);
 
     @NotNull
     Page<EmailHistoryEntity> findAll(@NotNull Pageable pageable);
 
     Optional<EmailHistoryEntity> findByEmailAndVisibleTrue(String email);
+
 }
