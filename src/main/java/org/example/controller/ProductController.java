@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.dto.ProductDTO;
+import org.example.dto.filter.ProductFilterDTO;
 import org.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
@@ -13,8 +14,12 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @PostMapping("/adm/v1/create")
     public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
@@ -40,10 +45,24 @@ public class ProductController {
         return ResponseEntity.ok().body(true);
     }
 
+    @GetMapping("/{name}")
+    public ResponseEntity<ProductDTO> getCategoryByName(@PathVariable String name) {
+        ProductDTO name1 = productService.getName(name);
+        return ResponseEntity.ok().body(name1);
+    }
+
     @GetMapping("/pagination")
-    public ResponseEntity<PageImpl<ProductDTO>>pagination(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                                          @RequestParam(value = "size", defaultValue = "10") Integer size) {
+    public ResponseEntity<PageImpl<ProductDTO>> pagination(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                                                           @RequestParam(value = "size", defaultValue = "10") Integer size) {
         PageImpl<ProductDTO> pagination = productService.getPagination(page, size);
         return ResponseEntity.ok().body(pagination);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<PageImpl<ProductDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                               @RequestParam(value = "size", defaultValue = "10") int size,
+                                                               @RequestBody ProductFilterDTO filter) {
+        PageImpl<ProductDTO> studentDTOList = productService.filter(filter, page - 1, size);
+        return ResponseEntity.ok().body(studentDTOList);
     }
 }

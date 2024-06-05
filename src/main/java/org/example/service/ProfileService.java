@@ -19,11 +19,15 @@ import java.util.List;
 @Service
 public class ProfileService {
 
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
+
+    private final ProfileCustomRepository profileCustomRepository;
 
     @Autowired
-    private ProfileCustomRepository profileCustomRepository;
+    public ProfileService(ProfileRepository profileRepository, ProfileCustomRepository profileCustomRepository) {
+        this.profileRepository = profileRepository;
+        this.profileCustomRepository = profileCustomRepository;
+    }
 
     public ProfileDTO create(ProfileCreateDTO profileDTO) {
         ProfileEntity entity = new ProfileEntity();
@@ -37,7 +41,7 @@ public class ProfileService {
         return profileToDTO(entity);
     }
 
-    public Boolean update(Integer id,ProfileDTO profile) {
+    public Boolean update(Integer id, ProfileDTO profile) {
         ProfileEntity profileEntity = get(id);
         profileEntity.setName(profile.getName());
         profileEntity.setSurname(profile.getSurname());
@@ -97,7 +101,7 @@ public class ProfileService {
     }
 
     public PageImpl<ProfileDTO> filter(ProfileFilterDTO filter, int page, int size) {
-        FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter,page, size);
+        FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter, page, size);
 
         List<ProfileDTO> dtoList = new LinkedList<>();
         for (ProfileEntity entity : filterResponse.getContent()) {
@@ -110,7 +114,7 @@ public class ProfileService {
             dto.setCreatedDate(entity.getCreatedDate());
             dtoList.add(dto);
         }
-        return new PageImpl<ProfileDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
+        return new PageImpl<ProfileDTO>(dtoList, PageRequest.of(page, size), filterResponse.getTotalCount());
     }
 
 }

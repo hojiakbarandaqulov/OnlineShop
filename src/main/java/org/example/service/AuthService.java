@@ -19,14 +19,18 @@ import java.util.Optional;
 
 @Service
 public class AuthService {
-    @Autowired
-    private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
+
+    private final MailSenderService mailSenderService;
+
+    private final EmailHistoryService emailHistoryService;
 
     @Autowired
-    private MailSenderService mailSenderService;
-
-    @Autowired
-    private EmailHistoryService emailHistoryService;
+    public AuthService(ProfileRepository profileRepository, MailSenderService mailSenderService, EmailHistoryService emailHistoryService) {
+        this.profileRepository = profileRepository;
+        this.mailSenderService = mailSenderService;
+        this.emailHistoryService = emailHistoryService;
+    }
 
     public String registration(RegistrationDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
@@ -69,7 +73,7 @@ public class AuthService {
     public AuthResponseDTO login(LoginDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
         if (optional.isEmpty()) {
-             throw new AppBadException("profile not found");
+            throw new AppBadException("profile not found");
         }
 
         ProfileEntity entity = optional.get();
@@ -81,9 +85,10 @@ public class AuthService {
         responseDTO.setName(entity.getName());
         responseDTO.setSurname(entity.getSurname());
         responseDTO.setRole(entity.getRole());
-        responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getEmail(),responseDTO.getRole()));
+        responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getEmail(), responseDTO.getRole()));
         return responseDTO;
     }
+
     //email resend
     public String registrationResendEmail(String email) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(email);

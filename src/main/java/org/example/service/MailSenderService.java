@@ -12,13 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailSenderService {
 
+    private final JavaMailSender javaMailSender;
     @Autowired
-    private JavaMailSender javaMailSender;
+    public MailSenderService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     @Value("${spring.mail.username}")
     private String fromEmail;
 
-    public void send(String toAccount, String subject, String text)  {
+    public void send(String toAccount, String subject, String text) {
         try {
             MimeMessage msg = javaMailSender.createMimeMessage();
             msg.setFrom(fromEmail);
@@ -31,7 +34,5 @@ public class MailSenderService {
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
-
     }
-
 }

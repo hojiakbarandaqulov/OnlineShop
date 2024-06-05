@@ -1,35 +1,30 @@
-### Category create to example
-POST http://localhost:8080/category/adm/v1/create
+### Order create to exampple
+POST http://localhost:8080/order/adm/v1/create
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NTE5NjMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzM4MzYzLCJpc3MiOiJPbmxpbmVTaG9wIn0.w3WGwG0i3Fddec5ktrCGbcapjQAIRK21uU4f7-0fIu0u9WNmQxhVENnYNqYsJz29whfHGevIXEKnKSX9VNu2wQ
 
 {
-  "name": "Kitchen",
-  "orderNumber": 1,
-  "visible": true
+  "productName": "chair",
+  "quantity": 1,
+  "orderStatus": "PENDING"
 }
 
-### Category read to exampla
-GET http://localhost:8080/category/adm/v2/categoryAll
+### Order read to example
+GET http://localhost:8080/order/adm/v2/categoryAll
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NTE5NjMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzM4MzYzLCJpc3MiOiJPbmxpbmVTaG9wIn0.w3WGwG0i3Fddec5ktrCGbcapjQAIRK21uU4f7-0fIu0u9WNmQxhVENnYNqYsJz29whfHGevIXEKnKSX9VNu2wQ
 
 
-### Category update to examplpe
-PUT http://localhost:8080/category/adm/v3/update/1
+### Order update to example
+PUT http://localhost:8080/order/adm/v3/update/12
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NTE5NjMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzM4MzYzLCJpc3MiOiJPbmxpbmVTaG9wIn0.w3WGwG0i3Fddec5ktrCGbcapjQAIRK21uU4f7-0fIu0u9WNmQxhVENnYNqYsJz29whfHGevIXEKnKSX9VNu2wQ
 
 {
-  "id": 1,
-  "name": "Kitchen",
-  "orderNumber": 1,
-  "visible": true
+  "productName": "chair",
+  "quantity": 2,
+  "orderStatus": "PENDING"
 }
 
-### Category Delete to example
-DELETE http://localhost:8080/category/adm/v4/delete/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NTE5NjMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzM4MzYzLCJpc3MiOiJPbmxpbmVTaG9wIn0.w3WGwG0i3Fddec5ktrCGbcapjQAIRK21uU4f7-0fIu0u9WNmQxhVENnYNqYsJz29whfHGevIXEKnKSX9VNu2wQ
-
-###
-GET http://localhost:8080/swagger-ui/index.html
+### Order Delete to example
+DELETE http://localhost:8080/order/adm/v4/delete/12
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NTE5NjMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzM4MzYzLCJpc3MiOiJPbmxpbmVTaG9wIn0.w3WGwG0i3Fddec5ktrCGbcapjQAIRK21uU4f7-0fIu0u9WNmQxhVENnYNqYsJz29whfHGevIXEKnKSX9VNu2wQ

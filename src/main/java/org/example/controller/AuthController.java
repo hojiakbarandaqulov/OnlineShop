@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+    private final AuthService authService;
 
     @Autowired
-    private AuthService authService;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/registration")
     public ResponseEntity<String> registrationEmail(@Valid @RequestBody RegistrationDTO dto) {

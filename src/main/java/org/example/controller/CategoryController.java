@@ -1,30 +1,45 @@
 package org.example.controller;
 
-import org.example.dto.ProductDTO;
-import org.example.dto.filter.ProductFilterDTO;
+import org.example.dto.CategoryDTO;
 import org.example.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
-    @Autowired
-    private CategoryService categoryService;
 
-    @GetMapping("/{name}")
-    public ResponseEntity<ProductDTO> getCategoryByName(@PathVariable String name) {
-        ProductDTO name1 = categoryService.getName(name);
-        return ResponseEntity.ok().body(name1);
+    private final CategoryService categoryService;
+
+    @Autowired
+
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
-    @PostMapping("/filter")
-    public ResponseEntity<PageImpl<ProductDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                               @RequestParam(value = "size", defaultValue = "10") int size,
-                                                               @RequestBody ProductFilterDTO filter) {
-        PageImpl<ProductDTO> studentDTOList = categoryService.filter(filter, page - 1, size);
-        return ResponseEntity.ok().body(studentDTOList);
+    @PostMapping("/adm/v1/create")
+    public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO categoryDTO) {
+        CategoryDTO response = categoryService.create(categoryDTO);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/adm/v2/categoryAll")
+    public ResponseEntity<List<CategoryDTO>> getAllProducts() {
+        List<CategoryDTO> all = categoryService.getAll();
+        return ResponseEntity.ok().body(all);
+    }
+    @PutMapping("/adm/v3/update/{id}")
+    public ResponseEntity<Boolean> update(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO) {
+        categoryService.update(id, categoryDTO);
+        return ResponseEntity.ok().body(true);
+    }
+
+    @DeleteMapping("/adm/v4/delete/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
+        categoryService.deleteId(id);
+        return ResponseEntity.ok().body(true);
     }
 }

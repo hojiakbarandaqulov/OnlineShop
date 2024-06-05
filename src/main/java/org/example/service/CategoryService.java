@@ -1,66 +1,84 @@
 package org.example.service;
 
+import org.example.dto.CategoryDTO;
 import org.example.dto.ProductDTO;
-import org.example.dto.filter.ProductFilterDTO;
-import org.example.dto.response.FilterResponseDTO;
+import org.example.entity.CategoryEntity;
 import org.example.entity.ProductEntity;
 import org.example.exp.AppBadException;
 import org.example.repository.CategoryRepository;
-import org.example.repository.ProductRepository;
 //import org.example.repository.customRepository.ProductCustomRepository;
-import org.example.repository.customRepository.ProductCustomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private ProductCustomRepository productCustomRepository;
-    public ProductDTO getName(String name) {
-        List<ProductEntity> byName = productRepository.findByName(name);
-        if (byName.isEmpty()) {
-            throw new AppBadException("product not found");
-        }
-        ProductEntity productEntity = byName.get(0);
-        return productToDTO(productEntity);
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
-    private ProductDTO productToDTO(ProductEntity productEntity) {
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setName(productEntity.getName());
-        productDTO.setDescription(productEntity.getDescription());
-        productDTO.setPrice(productEntity.getPrice());
-        productDTO.setOriginalPrice(productEntity.getOriginalPrice());
-        productDTO.setImageUrl(productEntity.getImageUrl());
-        productDTO.setCondition(productEntity.getCondition());
-        productDTO.setDiscount(productEntity.getDiscount());
-        productDTO.setStatistics(productEntity.getStatistics());
-        return productDTO;
+    public CategoryDTO create(CategoryDTO categoryDTO) {
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setOrderNumber(categoryDTO.getOrderNumber());
+        categoryEntity.setName(categoryDTO.getName());
+        categoryEntity.setVisible(categoryDTO.getVisible());
+        categoryRepository.save(categoryEntity);
+        return categoryToDTO(categoryEntity);
     }
 
-    public PageImpl<ProductDTO> filter(ProductFilterDTO filter, int page, int size) {
-        FilterResponseDTO<ProductEntity> filterResponse = productCustomRepository.filter(filter, page, size);
+    public CategoryDTO categoryToDTO(CategoryEntity categoryEntity) {
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setId(categoryEntity.getId());
+        categoryDTO.setName(categoryEntity.getName());
+        categoryDTO.setOrderNumber(categoryEntity.getOrderNumber());
+        categoryDTO.setVisible(categoryEntity.getVisible());
+        categoryDTO.setCreatedDate(categoryEntity.getCreatedDate());
+        return categoryDTO;
+    }
 
-        List<ProductDTO> dtoList = new LinkedList<>();
-        for (ProductEntity entity : filterResponse.getContent()) {
-            ProductDTO dto = new ProductDTO();
-            dto.setName(entity.getName());
-            dto.setDescription(entity.getDescription());
-            dto.setPrice(entity.getPrice());
-            dto.setOriginalPrice(entity.getOriginalPrice());
-            dto.setDiscount(entity.getDiscount());
-            dto.setStatistics(entity.getStatistics());
-            dtoList.add(dto);
+    public CategoryEntity categoryToEntity(CategoryDTO categoryDTO) {
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setOrderNumber(categoryDTO.getOrderNumber());
+        categoryEntity.setName(categoryDTO.getName());
+        categoryEntity.setVisible(categoryDTO.getVisible());
+        categoryEntity.setCreatedDate(categoryDTO.getCreatedDate());
+        return categoryEntity;
+    }
+
+    public List<CategoryDTO> getAll() {
+        List<CategoryEntity> categoryEntities = categoryRepository.findAll();
+        List<CategoryDTO> categoryList = new LinkedList<>();
+        for (CategoryEntity categoryEntity : categoryEntities) {
+            categoryList.add(categoryToDTO(categoryEntity));
         }
-        return new PageImpl<ProductDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
+        return categoryList;
+    }
+
+    public void update(Integer id, CategoryDTO categoryDTO) {
+        Optional<CategoryEntity> byId = categoryRepository.findById(id);
+        if (byId.isEmpty()) {
+            throw new AppBadException("category not found");
+        }
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setId(id);
+        categoryEntityToDto(categoryDTO, categoryEntity);
+    }
+
+    public void deleteId(Integer id) {
+        categoryRepository.deleteById(id);
+    }
+
+    private void categoryEntityToDto(CategoryDTO dto, CategoryEntity categoryEntity) {
+        categoryEntity.setName(dto.getName());
+        categoryEntity.setOrderNumber(dto.getOrderNumber());
+        categoryEntity.setVisible(dto.getVisible());
+        categoryEntity.setCreatedDate(LocalDate.now());
     }
 }

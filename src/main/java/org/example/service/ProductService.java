@@ -17,14 +17,24 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    private final ProductCustomRepository productCustomRepository;
 
     @Autowired
-    private ProductCustomRepository productCustomRepository;
+    public ProductService(ProductRepository productRepository, ProductCustomRepository productCustomRepository) {
+        this.productRepository = productRepository;
+        this.productCustomRepository = productCustomRepository;
+    }
 
     public ProductDTO create(ProductDTO dto) {
         ProductEntity productEntity = new ProductEntity();
+        productEntityToDTO(dto, productEntity);
+        productRepository.save(productEntity);
+        return productToDTO(productEntity);
+    }
+
+    private void productEntityToDTO(ProductDTO dto, ProductEntity productEntity) {
         productEntity.setName(dto.getName());
         productEntity.setDescription(dto.getDescription());
         productEntity.setPrice(dto.getPrice());
@@ -33,8 +43,6 @@ public class ProductService {
         productEntity.setCondition(dto.getCondition());
         productEntity.setDiscount(dto.getDiscount());
         productEntity.setStatistics(dto.getStatistics());
-        productRepository.save(productEntity);
-        return productToDTO(productEntity);
     }
 
     private ProductDTO productToDTO(ProductEntity productEntity) {
@@ -57,77 +65,52 @@ public class ProductService {
         }
         ProductEntity productEntity = new ProductEntity();
         productEntity.setId(id);
-        productEntity.setName(productDTO.getName());
-        productEntity.setDescription(productDTO.getDescription());
-        productEntity.setPrice(productDTO.getPrice());
-        productEntity.setOriginalPrice(productDTO.getOriginalPrice());
-        productEntity.setImageUrl(productDTO.getImageUrl());
-        productEntity.setCondition(productDTO.getCondition());
-        productEntity.setDiscount(productDTO.getDiscount());
-        productEntity.setStatistics(productDTO.getStatistics());
+        productEntityToDTO(productDTO, productEntity);
         productRepository.save(productEntity);
         return productToDTO(productEntity);
     }
 
     public List<ProductDTO> getAll() {
         Iterable<ProductEntity> all = productRepository.findAll();
-        List<ProductDTO>dtoList=new LinkedList<>();
+        List<ProductDTO> dtoList = new LinkedList<>();
         for (ProductEntity productEntity : all) {
-            ProductDTO productDTO = new ProductDTO();
-            productDTO.setName(productEntity.getName());
-            productDTO.setDescription(productEntity.getDescription());
-            productDTO.setPrice(productEntity.getPrice());
-            productDTO.setOriginalPrice(productEntity.getOriginalPrice());
-            productDTO.setImageUrl(productEntity.getImageUrl());
-            productDTO.setCondition(productEntity.getCondition());
-            productDTO.setDiscount(productEntity.getDiscount());
-            productDTO.setStatistics(productEntity.getStatistics());
-            dtoList.add(productDTO);
+            dtoList.add(productToDTO(productEntity));
         }
         return dtoList;
     }
 
-    public Boolean deleteId(Integer id) {
-        productRepository.deleteById(id);
-        return true;
-    }
     public PageImpl<ProductDTO> filter(ProductFilterDTO filter, int page, int size) {
         FilterResponseDTO<ProductEntity> filterResponse = productCustomRepository.filter(filter, page, size);
 
         List<ProductDTO> dtoList = new LinkedList<>();
         for (ProductEntity entity : filterResponse.getContent()) {
-            ProductDTO dto = new ProductDTO();
-            dto.setName(entity.getName());
-            dto.setDescription(entity.getDescription());
-            dto.setPrice(entity.getPrice());
-            dto.setOriginalPrice(entity.getOriginalPrice());
-            dto.setImageUrl(entity.getImageUrl());
-            dto.setCondition(entity.getCondition());
-            dto.setDiscount(entity.getDiscount());
-            dto.setStatistics(entity.getStatistics());
-            dtoList.add(dto);
+            dtoList.add(productToDTO(entity));
         }
-        return new PageImpl<ProductDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
+        return new PageImpl<ProductDTO>(dtoList, PageRequest.of(page, size), filterResponse.getTotalCount());
     }
 
-    public PageImpl<ProductDTO> getPagination(Integer page,Integer size) {
-        Sort sort=Sort.by(Sort.Order.desc("price"));
-        Pageable pageable=PageRequest.of(page,size,sort);
+    public PageImpl<ProductDTO> getPagination(Integer page, Integer size) {
+        Sort sort = Sort.by(Sort.Order.desc("price"));
+        Pageable pageable = PageRequest.of(page, size, sort);
         Page<ProductEntity> pagePbj = productRepository.findAll(pageable);
-        List<ProductDTO> productList=new LinkedList<>();
+        List<ProductDTO> productList = new LinkedList<>();
         for (ProductEntity entity : pagePbj.getContent()) {
-            ProductDTO productDTO = new ProductDTO();
-            productDTO.setName(entity.getName());
-            productDTO.setDescription(entity.getDescription());
-            productDTO.setPrice(entity.getPrice());
-            productDTO.setOriginalPrice(entity.getOriginalPrice());
-            productDTO.setImageUrl(entity.getImageUrl());
-            productDTO.setCondition(entity.getCondition());
-            productDTO.setDiscount(entity.getDiscount());
-            productDTO.setStatistics(entity.getStatistics());
-            productList.add(productDTO);
+            productList.add(productToDTO(entity));
         }
         Long totalElements = pagePbj.getTotalElements();
         return new PageImpl<ProductDTO>(productList, pageable, totalElements);
+    }
+
+    public ProductDTO getName(String name) {
+        List<ProductEntity> byName = productRepository.findByName(name);
+        if (byName.isEmpty()) {
+            throw new AppBadException("product not found");
+        }
+        ProductEntity productEntity = byName.get(0);
+        return productToDTO(productEntity);
+    }
+
+    public void deleteId(Integer id) {
+        productRepository.deleteById(id);
     }
 }
