@@ -1,11 +1,9 @@
 package org.example.service;
 
 import org.example.dto.*;
-import org.example.dto.filter.ProductFilterDTO;
 import org.example.dto.filter.ProfileFilterDTO;
 import org.example.dto.response.FilterResponseDTO;
 import org.example.dto.update.ProfileUpdateDTO;
-import org.example.entity.ProductEntity;
 import org.example.entity.ProfileEntity;
 import org.example.exp.AppBadException;
 import org.example.repository.ProfileRepository;
@@ -97,8 +95,9 @@ public class ProfileService {
         profileRepository.deleteById(id);
         return true;
     }
+
     public PageImpl<ProfileDTO> filter(ProfileFilterDTO filter, int page, int size) {
-        FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter, page, size);
+        FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter,page, size);
 
         List<ProfileDTO> dtoList = new LinkedList<>();
         for (ProfileEntity entity : filterResponse.getContent()) {
@@ -113,5 +112,6 @@ public class ProfileService {
         }
         return new PageImpl<ProfileDTO>( dtoList, PageRequest.of(page,size), filterResponse.getTotalCount());
     }
+
 }
 

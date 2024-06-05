@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api")
+@RequestMapping("/profile")
 @RestController
 public class ProfileController {
 
@@ -49,6 +49,8 @@ public class ProfileController {
         profileService.deleteId(id);
         return ResponseEntity.ok().body(true);
     }
+
+
     @PostMapping("/filter")
     public ResponseEntity<PageImpl<ProfileDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                @RequestParam(value = "size", defaultValue = "10") int size,

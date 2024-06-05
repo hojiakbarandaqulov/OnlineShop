@@ -51,6 +51,11 @@ POST http://localhost:8080/api/filter?page=6&size=10
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
 
+###
+POST http://localhost:8080/profile/filter?page=1&size=3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc0MjI1OTMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NTA4OTkzLCJpc3MiOiJPbmxpbmVTaG9wIn0.HsMrsFAJUYg1OMgCdgg26dSIWcTaNt5lIQY3Fb3vbKVZJFNM8s8iSceRgCmyFq7viGHfdJ2hxFTLo4lRyBGtDQ
+
 {
   "name": "Alish",
   "surname": "Alishev",
