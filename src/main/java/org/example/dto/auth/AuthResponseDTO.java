@@ -6,11 +6,13 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.enums.ProfileRole;
+import org.jetbrains.annotations.NotNull;
 
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthResponseDTO {
+    @NotNull
     private Integer id;
     @NotBlank(message = "name required")
     private String name;

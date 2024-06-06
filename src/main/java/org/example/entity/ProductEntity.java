@@ -33,5 +33,4 @@ public class ProductEntity {
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
 
-
 }
