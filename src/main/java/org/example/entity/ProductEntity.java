@@ -26,13 +26,10 @@ public class ProductEntity {
     private String imageUrl;
     @Column(name = "condition")
     private ProductCondition condition;
-
     @Column(name = "discount")
     private Integer discount;
-
     @Column(name = "statistics")
     private Integer statistics;
-
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
 

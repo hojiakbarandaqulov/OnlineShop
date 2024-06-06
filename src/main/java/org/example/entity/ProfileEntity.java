@@ -18,27 +18,20 @@ public class ProfileEntity {
     private Integer id;
     @Column(name = "name")
     private String name;
-
     @Column(name = "surname")
     private String surname;
-
     @Column(name = "email")
     private String email;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private ProfileStatus status;
-
     @Column(name = "password")
     private String password;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private ProfileRole role;
-
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
-
     @Column(name = "created_date")
     private LocalDate createdDate = LocalDate.now();
 

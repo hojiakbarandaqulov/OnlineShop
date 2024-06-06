@@ -13,13 +13,10 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name = "product_name",columnDefinition = "text")
     private String productName;
-
     @Column(name = "quantity")
     private Integer quantity;
-
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;

@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
+
     private final OrderService orderService;
 
     @Autowired
@@ -31,6 +32,7 @@ public class OrderController {
         List<OrderDTO> all = orderService.getAll();
         return ResponseEntity.ok().body(all);
     }
+
     @PutMapping("/adm/v3/update/{id}")
     public ResponseEntity<Boolean> update(@PathVariable Integer id, @RequestBody OrderDTO orderDTO) {
         orderService.update(id, orderDTO);

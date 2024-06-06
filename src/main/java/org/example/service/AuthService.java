@@ -37,7 +37,6 @@ public class AuthService {
         if (optional.isPresent()) {
             throw new AppBadException("Email already exists");
         }
-
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
@@ -48,7 +47,6 @@ public class AuthService {
         entity.setStatus(ProfileStatus.REGISTRATION);
         entity.setStatus(dto.getStatus());
         profileRepository.save(entity);
-        // send email
         sendRegistrationEmail(entity.getId(), entity.getEmail());
 
         return "To complete your registration please verify your email.";
@@ -59,17 +57,14 @@ public class AuthService {
         if (optional.isEmpty()) {
             throw new AppBadException("User not found");
         }
-
         ProfileEntity entity = optional.get();
         if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             throw new AppBadException("Registration not completed");
         }
-
         profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
         return "Success";
     }
 
-    //login email
     public AuthResponseDTO login(LoginDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
         if (optional.isEmpty()) {
@@ -89,13 +84,11 @@ public class AuthService {
         return responseDTO;
     }
 
-    //email resend
     public String registrationResendEmail(String email) {
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(email);
         if (optional.isEmpty()) {
             throw new AppBadException("Email not exists");
         }
-
         ProfileEntity entity = optional.get();
         emailHistoryService.isNotExpiredEmail(entity.getEmail());// check for expireation date
         if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
@@ -107,9 +100,7 @@ public class AuthService {
         return "To complete your registration please verify your email.";
     }
 
-
     public void sendRegistrationRandomCodeEmail(Integer profileId, String email) {
-        // send email
         String url = "http://localhost:8080/auth/verification/" + profileId;
         String text = String.format(RandomUtil.getRandomSmsCode(), url);
         mailSenderService.send(email, "Complete registration", text);
@@ -117,7 +108,6 @@ public class AuthService {
     }
 
     public void sendRegistrationEmail(Integer profileId, String email) {
-        // send email
         String url = "http://localhost:8080/auth/verification/" + profileId;
         String formatText = "<style>\n" +
                 "    a:link, a:visited {\n" +

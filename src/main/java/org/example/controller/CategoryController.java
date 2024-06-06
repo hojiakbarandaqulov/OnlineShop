@@ -15,7 +15,6 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @Autowired
-
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
@@ -31,6 +30,7 @@ public class CategoryController {
         List<CategoryDTO> all = categoryService.getAll();
         return ResponseEntity.ok().body(all);
     }
+
     @PutMapping("/adm/v3/update/{id}")
     public ResponseEntity<Boolean> update(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO) {
         categoryService.update(id, categoryDTO);

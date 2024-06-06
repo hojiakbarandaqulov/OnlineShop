@@ -1,7 +1,7 @@
-####
+#### Profile create to example
 POST http://localhost:8080/profile/adm/create
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
 {
   "name": "Alish",
@@ -13,22 +13,23 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST
   "role": "ROLE_ADMIN"
 }
 
-### Profile update detail
+### Profile update to example
 PUT  http://localhost:8080/profile/adm/current/5
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
 {
   "name": "Valish",
   "surname": "Valishev"
 }
 
-###
+### Profile update to example
 PUT http://localhost:8080/profile/adm/update/5
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
 {
+  "id": 3,
   "name": "Alish",
   "surname": "Alishev",
   "email": "ali@gmail.com",
@@ -37,24 +38,24 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST
   "status": "ACTIVE",
   "role": "ROLE_ADMIN"
 }
+
 ### Get all Profile to example server
 GET  http://localhost:8080/profile/adm/profilePagination?page=1&size=3
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
-
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
 ### Delete ById Profile to example server
 DELETE http://localhost:8080/profile/adm/delete/6
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
-###
+### Profile pagination to example
 POST http://localhost:8080/api/filter?page=6&size=10
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc1NjEyMDksInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NjQ3NjA5LCJpc3MiOiJPbmxpbmVTaG9wIn0.KannKSLMCOiub1GPv4C1ia2-l9RxufLZrZzCgwEhvwYw0Z6E2xeilS87n6mmkvddQvcqBRSxULpGKkRPtKvJCg
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
-###
+### Profile filter to example
 POST http://localhost:8080/profile/filter?page=1&size=3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc0MjI1OTMsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NTA4OTkzLCJpc3MiOiJPbmxpbmVTaG9wIn0.HsMrsFAJUYg1OMgCdgg26dSIWcTaNt5lIQY3Fb3vbKVZJFNM8s8iSceRgCmyFq7viGHfdJ2hxFTLo4lRyBGtDQ
+Authorization: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTc2NzUzMjYsInJvbGUiOiJST0xFX0FETUlOIiwidXNlcm5hbWUiOiJob2ppYWtiYXJhbmRhcXVsb3ZAZ21haWwuY29tIiwiZXhwIjoxNzE3NzYxNzI2LCJpc3MiOiJPbmxpbmVTaG9wIn0.w8gadSNy_J3xhNcCedVDD5RI_lo_oa5_Mk_pY9PHn8pyoQ109wW4nnMcBTFYMqFEKQPpsxVy5Eo4-zdfmAYWEw
 
 {
   "name": "Alish",

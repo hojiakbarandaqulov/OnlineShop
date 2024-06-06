@@ -18,8 +18,13 @@ import java.util.Optional;
 
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
+
+    private final ProfileRepository profileRepository;
+
     @Autowired
-    private ProfileRepository profileRepository;
+    public CommandLineAppStartupRunner(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
+    }
 
     @Override
     public void run(String...args) throws Exception {

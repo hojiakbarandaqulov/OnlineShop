@@ -21,8 +21,12 @@ import java.util.Map;
 
 @Repository
 public class ProfileCustomRepository {
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public ProfileCustomRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     public FilterResponseDTO<ProfileEntity> filter(ProfileFilterDTO filter, int page, int size) {
         Map<String, Object> params = new HashMap<>();
@@ -54,7 +58,6 @@ public class ProfileCustomRepository {
         selectSql.append(query);
         countSql.append(query);
 
-        // select
         Query selectQuery = entityManager.createQuery(selectSql.toString());
         Query countQuery = entityManager.createQuery(countSql.toString());
 
@@ -65,7 +68,6 @@ public class ProfileCustomRepository {
         selectQuery.setFirstResult(page * size); // offset
         selectQuery.setMaxResults(size); // limit
         List<ProfileEntity> studentEntityList = selectQuery.getResultList();
-        // count
         Long totalCount = (Long) countQuery.getSingleResult();
 
         return new FilterResponseDTO<ProfileEntity>(studentEntityList, totalCount);

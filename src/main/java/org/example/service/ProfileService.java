@@ -53,7 +53,6 @@ public class ProfileService {
         return true;
     }
 
-
     public Boolean updateUser(Integer id, ProfileUpdateDTO profileUser) {
         ProfileEntity profileEntity = get(id);
         profileEntity.setName(profileUser.getName());
@@ -80,7 +79,6 @@ public class ProfileService {
         });
     }
 
-
     public PageImpl<ProfileDTO> getAllPagination(int page, int size) {
         Sort sort = Sort.by(Sort.Order.desc("createdDate"));
         Pageable pageable = PageRequest.of(page, size, sort);
@@ -90,7 +88,6 @@ public class ProfileService {
         for (ProfileEntity entity : pageObj.getContent()) {
             dtoList.add(profileToDTO(entity));
         }
-
         Long totalCount = pageObj.getTotalElements();
         return new PageImpl<ProfileDTO>(dtoList, pageable, totalCount);
     }
@@ -102,7 +99,6 @@ public class ProfileService {
 
     public PageImpl<ProfileDTO> filter(ProfileFilterDTO filter, int page, int size) {
         FilterResponseDTO<ProfileEntity> filterResponse = profileCustomRepository.filter(filter, page, size);
-
         List<ProfileDTO> dtoList = new LinkedList<>();
         for (ProfileEntity entity : filterResponse.getContent()) {
             ProfileDTO dto = new ProfileDTO();

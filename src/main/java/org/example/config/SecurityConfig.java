@@ -28,12 +28,14 @@ import java.util.UUID;
 @Component
 public class SecurityConfig {
 
+    private final CustomUserDetailService customUserDetailService;
+    private final JwtTokenFilter jwtTokenFilter;
+
     @Autowired
-    private CustomUserDetailService customUserDetailService;
-    @Autowired
-    private ProfileRepository repository;
-    @Autowired
-    private JwtTokenFilter jwtTokenFilter;
+    public SecurityConfig(CustomUserDetailService customUserDetailService, JwtTokenFilter jwtTokenFilter) {
+        this.customUserDetailService = customUserDetailService;
+        this.jwtTokenFilter = jwtTokenFilter;
+    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

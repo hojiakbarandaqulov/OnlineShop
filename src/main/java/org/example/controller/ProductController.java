@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.validation.Valid;
 import org.example.dto.ProductDTO;
 import org.example.dto.filter.ProductFilterDTO;
 import org.example.service.ProductService;
@@ -61,7 +62,7 @@ public class ProductController {
     @PostMapping("/filter")
     public ResponseEntity<PageImpl<ProductDTO>> pageableFilter(@RequestParam(value = "page", defaultValue = "1") int page,
                                                                @RequestParam(value = "size", defaultValue = "10") int size,
-                                                               @RequestBody ProductFilterDTO filter) {
+                                                               @Valid @RequestBody ProductFilterDTO filter) {
         PageImpl<ProductDTO> studentDTOList = productService.filter(filter, page - 1, size);
         return ResponseEntity.ok().body(studentDTOList);
     }

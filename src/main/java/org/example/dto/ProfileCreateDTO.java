@@ -17,9 +17,10 @@ public class ProfileCreateDTO {
     private String surname;
     @NotBlank(message = "email required")
     private String email;
-
     @NotBlank(message = "password required")
     private String password;
+    @NotBlank(message = "status required")
     private ProfileStatus status;
+    @NotBlank(message = "role required")
     private ProfileRole role;
 }

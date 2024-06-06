@@ -19,9 +19,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     @Query("update ProfileEntity set status =?2 where id =?1")
     void updateStatus(Integer profileId, ProfileStatus status);
 
-    /* @Query(value = "select * from profile where email = :email and visible = true",nativeQuery = true)
-     Optional<ProfileEntity> findByEmailAndVisibleTrue(@Param("email") String email);*/
-   Optional<ProfileEntity> findByEmailAndPasswordAndVisible(String email, String password, Boolean visible);
+    Optional<ProfileEntity> findByEmailAndPasswordAndVisible(String email, String password, Boolean visible);
 
 
 }

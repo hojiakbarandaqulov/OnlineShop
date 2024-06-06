@@ -15,8 +15,13 @@ import java.util.Optional;
 
 @Service
 public class EmailHistoryService {
+
+    private final EmailHistoryRepository emailHistoryRepository;
+
     @Autowired
-    private EmailHistoryRepository emailHistoryRepository;
+    public EmailHistoryService(EmailHistoryRepository emailHistoryRepository) {
+        this.emailHistoryRepository = emailHistoryRepository;
+    }
 
     public void crete(String toEmail, String text) {
         EmailHistoryEntity entity = new EmailHistoryEntity();
@@ -28,14 +33,7 @@ public class EmailHistoryService {
         emailHistoryRepository.save(entity);
     }
 
-    public void checkEmailLimit(String email) { // 1 minute -3 attempt
-        // 23/05/2024 19:01:13
-        // 23/05/2024 19:01:23
-        // 23/05/2024 19:01:33
-
-        // 23/05/2024 19:00:55 -- (current -1)
-        // 23/05/2024 19:01:55 -- current
-
+    public void checkEmailLimit(String email) {
         LocalDateTime to = LocalDateTime.now();
         LocalDateTime from = to.minusMinutes(2);
 
@@ -55,7 +53,6 @@ public class EmailHistoryService {
             throw new AppBadException("Confirmation time expired");
         }
     }
-
 
     public EmailDTO getByEmail(String email, EmailDTO emailDTO) {
         Optional<EmailHistoryEntity> byEmail = emailHistoryRepository.findByEmail(email);

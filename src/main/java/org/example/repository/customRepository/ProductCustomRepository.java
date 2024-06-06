@@ -14,8 +14,12 @@ import java.util.Map;
 
 @Repository
 public class ProductCustomRepository {
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public ProductCustomRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     public FilterResponseDTO<ProductEntity> filter(ProductFilterDTO filter, int page, int size) {
         Map<String, Object> params = new HashMap<>();
@@ -32,11 +36,6 @@ public class ProductCustomRepository {
             query.append(" and s.condition=:condition ");
             params.put("condition", filter.getCondition());
         }
-       /* if (filter.getEmail() != null) {
-
-            query.append(" and s.email=:email ");
-            params.put("email", filter.getEmail());
-        }*/
         if (filter.getDiscount() != null) {
             query.append(" and s.discount=:discount ");
             params.put("discount", filter.getDiscount());
@@ -54,10 +53,7 @@ public class ProductCustomRepository {
 
         String countSql = "select count(s) From ProductEntity s where s.visible = true " + query;
 
-        // select
-        Query selectQuery = entityManager.createQuery("From ProductEntity s where s.visible = true " + query
-                // select
-        );
+        Query selectQuery = entityManager.createQuery("From ProductEntity s where s.visible = true " + query);
         Query countQuery = entityManager.createQuery(countSql);
 
         for (Map.Entry<String, Object> entity : params.entrySet()) {
@@ -67,7 +63,6 @@ public class ProductCustomRepository {
         selectQuery.setFirstResult(page * size); // offset
         selectQuery.setMaxResults(size); // limit
         List<ProductEntity> studentEntityList = selectQuery.getResultList();
-        // count
         Long totalCount = (Long) countQuery.getSingleResult();
 
         return new FilterResponseDTO<ProductEntity>(studentEntityList, totalCount);
